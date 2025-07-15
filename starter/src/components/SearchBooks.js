@@ -18,7 +18,11 @@ const SearchBooks = ({ books, onShelfChange }) => {
             // Merge search results with existing books to show correct shelf status
             const mergedResults = results.map(book => {
               const existingBook = books.find(b => b.id === book.id);
-              return existingBook || book;
+              if (existingBook) {
+                return existingBook;
+              } else {
+                return { ...book, shelf: 'none' };
+              }
             });
             setSearchResults(mergedResults);
           } else {
