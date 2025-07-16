@@ -1,10 +1,15 @@
 import React from 'react';
 
+const validShelves = ['currentlyReading', 'wantToRead', 'read'];
+
 const Book = ({ book, onShelfChange }) => {
   const handleShelfChange = (event) => {
     const newShelf = event.target.value;
     onShelfChange(book, newShelf);
   };
+
+  // Ensure the value is always a valid shelf or 'none'
+  const shelfValue = validShelves.includes(book.shelf) ? book.shelf : 'none';
 
   return (
     <li>
@@ -21,7 +26,7 @@ const Book = ({ book, onShelfChange }) => {
             }}
           ></div>
           <div className="book-shelf-changer">
-            <select value={book.shelf || 'none'} onChange={handleShelfChange}>
+            <select value={shelfValue} onChange={handleShelfChange}>
               <option value="none" disabled>
                 Move to...
               </option>
