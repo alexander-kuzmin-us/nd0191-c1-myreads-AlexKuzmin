@@ -8,8 +8,8 @@ const Book = ({ book, onShelfChange }) => {
     onShelfChange(book, newShelf);
   };
 
-  // Ensure the value is always a valid shelf or 'none'
-  const shelfValue = validShelves.includes(book.shelf) ? book.shelf : 'none';
+  // Bulletproof: always coerce to string before checking
+  const shelfValue = validShelves.includes(String(book.shelf)) ? String(book.shelf) : 'none';
 
   return (
     <li>
