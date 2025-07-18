@@ -10,6 +10,8 @@ const Book = ({ book, onShelfChange }) => {
 
   // Bulletproof: always coerce to string before checking
   const shelfValue = validShelves.includes(String(book.shelf)) ? String(book.shelf) : 'none';
+  // Debug log
+  console.log('Book:', book.title, 'shelf:', book.shelf, 'shelfValue:', shelfValue);
 
   return (
     <li>
